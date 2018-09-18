@@ -1,0 +1,25 @@
+@import './layout.scss';
+
+@mixin list($direction:column) {
+    @include flex($direction)
+}
+
+@mixin panel ($bgcolor:#fff,$padding:0,$margin:1rem 0 1rem 0 ,$height:100px) {
+    background: $bgcolor;
+    padding: $padding;
+    margin: $margin ;
+}
+
+@mixin line ($cs:column){
+    content: " ";
+    @if($cs=='column'){
+        transform: scaleY(.5);
+    }
+    @if($cs=='row'){
+        transform: scaleX(.5);
+    }
+    border: 1px solid gray;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
