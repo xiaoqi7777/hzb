@@ -29,7 +29,7 @@ if (process.env.NODE_ENV == 'development') {
   url = 'http://localhost:8001/'
 
 }else {
-  url = window.location.protocol + '//' + window.location.host
+  url = window.location.protocol + '//' + window.location.git 
 }
 Vue.prototype.axio = axios.create({
   baseURL: url,
