@@ -33,7 +33,8 @@ export default {
     return {
       active: 'tab-container1'
     };
-  }
+  },
+ 
 };
 </script>
  

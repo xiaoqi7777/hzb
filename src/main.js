@@ -23,26 +23,17 @@ Vue.use(Mint)
 
 Vue.config.productionTip = false
 
-Vue.prototype.$axio = axios
 
+let url = null 
+if (process.env.NODE_ENV == 'development') {
+  url = 'http://localhost:8001/'
 
-
-// http().get('/').then(data=>{
-//   console.log('111',data)
-// })
-
-// http().post('/app/getActivityPlayUrl').then((data)=>{
-//   console.log('---1')
-// },(data)=>{
-//   console.log('---2',data)
-// })
-
-
-// let url = 'http://access.hezhibo.com:8008/bpc/api/app/getActivityPlayUrl'
-// Vue.prototype.ax = axios.create({
-//   baseURL: url,
-// })
-
+}else {
+  url = window.location.protocol + '//' + window.location.host
+}
+Vue.prototype.axio = axios.create({
+  baseURL: url,
+})
 
 
 new Vue({

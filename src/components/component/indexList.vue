@@ -40,12 +40,10 @@ export default {
     };
   },
   components: { Box, Scenery },
-  mounted() {
-    axios.get('http://221.219.63.252:8002/check/1/process')
-      .then(data=>{
-        console.log(data)
-      })
-
+   mounted(){
+    this.axio.get('/').then(data=>{
+      console.log('11',data.data)
+    })
   }
 };
 </script>
