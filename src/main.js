@@ -29,7 +29,7 @@ if (process.env.NODE_ENV == 'development') {
   url = 'http://tsml520.cn'
 
 }else {
-  url = window.location.protocol + '//' + window.location.git 
+  url = 'http://tsml520.cn' 
 }
 Vue.prototype.axio = axios.create({
   baseURL: url,
