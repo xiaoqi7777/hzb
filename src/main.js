@@ -26,7 +26,7 @@ Vue.config.productionTip = false
 
 let url = null 
 if (process.env.NODE_ENV == 'development') {
-  url = 'http://localhost:8001/'
+  url = 'http://tsml520.cn'
 
 }else {
   url = window.location.protocol + '//' + window.location.git 
