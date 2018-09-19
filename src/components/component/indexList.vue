@@ -50,21 +50,21 @@ export default {
           timestamp: res.timestamp, // 必填，生成签名的时间戳
           nonceStr: res.noncestr, // 必填，生成签名的随机串
           signature: res.signature,// 必填，签名
-          jsApiList: ['chooseImage','downloadImage'] // 必填，需要使用的JS接口列表
+          jsApiList: [               
+                'startRecord',
+                'stopRecord',
+                'onVoiceRecordEnd',
+                'translateVoice'
+                ] // 必填，需要使用的JS接口列表
       })
       wx.ready(function(){
           wx.checkJsApi({
-              jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+              jsApiList: [
+                'startRecord'
+                ], // 需要检测的JS接口列表，所有JS接口列表见附录2,
               success: function(res) {
                   console.log('成功获取res',res)
               }
-          });
-          wx.downloadImage({
-            serverId: '', // 需要下载的图片的服务器端ID，由uploadImage接口获得
-            isShowProgressTips: 1, // 默认为1，显示进度提示
-            success: function (res) {
-            var localId = res.localId; // 返回图片下载后的本地ID
-          }
           });
       });
       wx.error(function(res){
