@@ -26,22 +26,22 @@
     <br/>
     <br/>
     <br/>
-    <div @click="btn1"> 开启录制 </div> <span @click="btn11">相机</span>
+    <div class="div1" @click="btn1"> 开启录制 </div> <span @click="btn11">相机</span>
         <br/>
     <br/>
     <br/>
     <br/>
-    <div @click="btn2"> 停止录制 </div> <span @click="btn22">照片预览</span>
+    <div  class="div1" @click="btn2"> 停止录制 </div> <span @click="btn22">照片预览</span>
         <br/>
     <br/>
     <br/>
     <br/>
-    <div @click="btn3"> 播放语言 </div>
+    <div  class="div1" @click="btn3"> 播放语言 </div>
       <br/>
     <br/>
     <br/>
     <br/>
-    <div @click="btn4"> 上报语音 </div>
+    <div  class="div1" @click="btn4"> 上报语音 </div>
   </mt-tab-container-item>
 </mt-tab-container>
 
@@ -170,5 +170,8 @@ export default {
   background: red;
   width: 100px;
   height: 100px;
+}
+.div1{
+  display: inline-block
 }
 </style>
