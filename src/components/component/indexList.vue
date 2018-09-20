@@ -22,9 +22,26 @@
   </mt-tab-container-item>
   <mt-tab-container-item id="2">
     <!-- <Scenery/> -->
-    <div @click="btn1"> 开启录制 </div>
-    <div @click="btn2"> 停止录制 </div>
-
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div @click="btn1"> 开启录制 </div> <span @click="btn11">相机</span>
+        <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div @click="btn2"> 停止录制 </div> <span @click="btn22">照片预览</span>
+        <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div @click="btn3"> 播放语言 </div>
+      <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div @click="btn4"> 上报语音 </div>
   </mt-tab-container-item>
 </mt-tab-container>
 
@@ -38,17 +55,58 @@ import Scenery from "./Scenery.vue";
 export default {
   data() {
     return {
-      selected: "1"
+      selected: "1",
+      localId:null,
+      src:null
     };
   },
   methods:{
+    btn11(){
+      let that = this
+      wx.chooseImage({
+          count: 1, // 默认9
+          sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+          sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+          success: function (res) {
+           that.src = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+          }
+      });
+    },
+    btn22(){
+      let that = this
+      wx.previewImage({
+        current: that.src, // 当前显示图片的http链接
+      });
+    },
     btn1(){
       wx.startRecord();
     },
     btn2(){
+      let that = this
       wx.stopRecord({
         success: function (res) {
         var localId = res.localId;
+        that.localId = localId
+        }
+      });
+    },
+    btn3(){
+      let that = this
+      wx.playVoice({
+        localId: this.localId, // 需要播放的音频的本地ID，由stopRecord接口获得
+       success: function (res) {
+          console.log('-------',that.localId)
+        }
+     });
+    },
+    btn4(){
+      let that = this
+      wx.uploadVoice({
+        localId: that.localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+        isShowProgressTips: 1, // 默认为1，显示进度提示
+        success: function (res) {
+          var serverId = res.serverId; // 返回音频的服务器端ID
+          console.log('语音上报成功',res)
         }
       });
     }
@@ -60,7 +118,7 @@ export default {
       let res = data.data
       console.log('signature',res.signature)
       wx.config({
-          debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
           appId: 'wx3df629936bf31f75', // 必填，公众号的唯一标识
           timestamp: res.timestamp, // 必填，生成签名的时间戳
           nonceStr: res.noncestr, // 必填，生成签名的随机串
@@ -69,7 +127,13 @@ export default {
                 'startRecord',
                 'stopRecord',
                 'onVoiceRecordEnd',
-                'translateVoice'
+                'translateVoice',
+                'playVoice',
+                'pauseVoice',
+                'stopVoice',
+                'uploadVoice',
+                'chooseImage',
+                'previewImage'
                 ] // 必填，需要使用的JS接口列表
       })
       wx.ready(function(){
