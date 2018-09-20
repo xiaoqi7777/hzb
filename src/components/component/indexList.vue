@@ -21,7 +21,10 @@
     <Box/>
   </mt-tab-container-item>
   <mt-tab-container-item id="2">
-    <Scenery/>
+    <!-- <Scenery/> -->
+    <div @click="btn1"> 开启录制 </div>
+    <div @click="btn2"> 停止录制 </div>
+
   </mt-tab-container-item>
 </mt-tab-container>
 
@@ -38,8 +41,20 @@ export default {
       selected: "1"
     };
   },
+  methods:{
+    btn1(){
+      wx.startRecord();
+    },
+    btn2(){
+      wx.stopRecord({
+        success: function (res) {
+        var localId = res.localId;
+        }
+      });
+    }
+  },
   components: { Box, Scenery },
-   mounted(){
+  mounted(){
     console.log('进来了')
     this.axio.get('/').then(data=>{
       let res = data.data
