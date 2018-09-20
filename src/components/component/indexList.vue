@@ -47,7 +47,9 @@
     <br/>
     <br/>
       <input v-model="id" placeholder="输入下载ID"><span @click="btn5">下载语音</span>
+    <div class="divImg">
       <img :src="src" alt="">
+    </div>
   </mt-tab-container-item>
 </mt-tab-container>
 
@@ -192,5 +194,11 @@ export default {
 }
 .div1{
   display: inline-block
+}
+.divImg{
+  width: 100%;
+}
+.divImg img{
+  width: 100%;
 }
 </style>
