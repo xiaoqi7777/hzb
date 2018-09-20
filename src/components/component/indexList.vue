@@ -46,7 +46,7 @@
     <br/>
     <br/>
     <br/>
-      <input v-bind="id" placeholder="输入下载ID"><span @click="btn5">下载语音</span>
+      <input v-model="id" placeholder="输入下载ID"><span @click="btn5">下载语音</span>
   </mt-tab-container-item>
 </mt-tab-container>
 
