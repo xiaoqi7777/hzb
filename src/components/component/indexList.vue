@@ -107,7 +107,7 @@ export default {
         isShowProgressTips: 1, // 默认为1，显示进度提示
         success: function (res) {
           var serverId = res.serverId; // 返回音频的服务器端ID
-          this.axio.post('/data',{data:serverId})
+          that.axio.post('/data',{data:serverId})
             .then(data=>{
               console.log('发送成功',data)
             })
