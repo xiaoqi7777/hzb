@@ -42,6 +42,11 @@
     <br/>
     <br/>
     <div  class="div1" @click="btn4"> 上报语音 </div>
+          <br/>
+    <br/>
+    <br/>
+    <br/>
+      <input v-bind="id" placeholder="输入下载ID"><span @click="btn5">下载语音</span>
   </mt-tab-container-item>
 </mt-tab-container>
 
@@ -57,10 +62,22 @@ export default {
     return {
       selected: "1",
       localId:null,
-      src:null
+      src:null,
+      id:null
     };
   },
   methods:{
+    btn5(){
+      let that = this
+      wx.downloadVoice({
+        serverId: that.id, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+        isShowProgressTips: 1, // 默认为1，显示进度提示
+        success: function (res) {
+          that.localId = res.localId; // 返回音频的本地ID
+          alert('下载成功')
+        }
+      });
+    },
     btn11(){
       let that = this
       wx.chooseImage({
@@ -138,7 +155,8 @@ export default {
                 'stopVoice',
                 'uploadVoice',
                 'chooseImage',
-                'previewImage'
+                'previewImage',
+                'downloadVoice'
                 ] // 必填，需要使用的JS接口列表
       })
       wx.ready(function(){
