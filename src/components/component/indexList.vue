@@ -47,6 +47,7 @@
     <br/>
     <br/>
       <input v-model="id" placeholder="输入下载ID"><span @click="btn5">下载语音</span>
+      <img :src="src" alt="">
   </mt-tab-container-item>
 </mt-tab-container>
 
@@ -63,7 +64,7 @@ export default {
       selected: "1",
       localId:null,
       src:null,
-      id:null
+      id:null,
     };
   },
   methods:{
