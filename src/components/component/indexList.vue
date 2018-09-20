@@ -76,6 +76,7 @@ export default {
       let that = this
       wx.previewImage({
         current: that.src, // 当前显示图片的http链接
+        urls: [that.src]
       });
     },
     btn1(){
@@ -106,6 +107,10 @@ export default {
         isShowProgressTips: 1, // 默认为1，显示进度提示
         success: function (res) {
           var serverId = res.serverId; // 返回音频的服务器端ID
+          this.axio.post('/data',{data:serverId})
+            .then(data=>{
+              console.log('发送成功',data)
+            })
           console.log('语音上报成功',res)
         }
       });
