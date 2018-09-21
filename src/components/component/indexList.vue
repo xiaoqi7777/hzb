@@ -42,11 +42,17 @@
     <br/>
     <br/>
     <div  class="div1" @click="btn4"> 上报语音 </div>
+
           <br/>
     <br/>
     <br/>
     <br/>
       <input v-model="id" placeholder="输入下载ID"><span @click="btn5">下载语音</span>
+                <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div  class="div1" @click="btn6"> 分享 </div>
     <div class="divImg">
       <img :src="src" alt="">
     </div>
@@ -98,6 +104,16 @@ export default {
         current: that.src, // 当前显示图片的http链接
         urls: [that.src]
       });
+    },
+    btn6(){
+      wx.updateAppMessageShareData({ 
+            title: '分享标题', // 分享标题
+            desc: '分享描述------------分享描述-----------分享描述--------分享描述', // 分享描述
+            link: 'http://www.tsml520.cn:5000', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1588799093,979234084&fm=58&bpow=500&bpoh=500', // 分享图标
+    }, function(res) { 
+      console.log('分享 成功了')
+    }); 
     },
     btn1(){
       wx.startRecord();
@@ -159,7 +175,8 @@ export default {
                 'uploadVoice',
                 'chooseImage',
                 'previewImage',
-                'downloadVoice'
+                'downloadVoice',
+                'updateAppMessageShareData'
                 ] // 必填，需要使用的JS接口列表
       })
       wx.ready(function(){
