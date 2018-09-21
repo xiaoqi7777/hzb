@@ -190,7 +190,8 @@ wx.onMenuShareTimeline({
                 'chooseImage',
                 'previewImage',
                 'downloadVoice',
-                'updateAppMessageShareData'
+                'updateAppMessageShareData',
+                'onMenuShareTimeline'
                 ] // 必填，需要使用的JS接口列表
       })
       wx.ready(function(){
