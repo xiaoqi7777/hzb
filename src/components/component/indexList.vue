@@ -106,28 +106,14 @@ export default {
       });
     },
     btn6(){
-      
-wx.onMenuShareTimeline({
-    title: '分享标题', // 分享标题
-    link: '分享描述------------分享描述-----------分享描述--------分享描述', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-    imgUrl: 'http://tsml520.cn:5000', // 分享图标
-    success: function () {
-      console.log('chengg.............')
-}
-
-})
-
-
-
-
-    //   wx.updateAppMessageShareData({ 
-    //         title: '分享标题', // 分享标题
-    //         desc: '分享描述------------分享描述-----------分享描述--------分享描述', // 分享描述
-    //         link: 'http://www.tsml520.cn:5000', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-    //         imgUrl: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1588799093,979234084&fm=58&bpow=500&bpoh=500', // 分享图标
-    // }, function(res) { 
-    //   console.log('分享 成功了')
-    // }); 
+      wx.updateAppMessageShareData({ 
+            title: '分享标题', // 分享标题
+            desc: '分享描述------------分享描述-----------分享描述--------分享描述', // 分享描述
+            link: 'http://www.tsml520.cn:5000', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1588799093,979234084&fm=58&bpow=500&bpoh=500', // 分享图标
+    }, function(res) { 
+      alert('分享 成功了')
+    }); 
     },
     btn1(){
       wx.startRecord();
@@ -190,8 +176,7 @@ wx.onMenuShareTimeline({
                 'chooseImage',
                 'previewImage',
                 'downloadVoice',
-                'updateAppMessageShareData',
-                'onMenuShareTimeline'
+                'updateAppMessageShareData'
                 ] // 必填，需要使用的JS接口列表
       })
       wx.ready(function(){
