@@ -66,7 +66,6 @@
 <script>
 import Box from "../slot/Box.vue";
 import Scenery from "./Scenery.vue";
-import axios from 'axios'
 
 export default {
   data() {
@@ -78,7 +77,7 @@ export default {
     };
   },
   created(){
-    axios.get(`/api/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=http://tsml520.cn/wx/he_live&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`)
+    this.axio.get(`/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=http://tsml520.cn/wx/he_live&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`)
       .then(data=>{ 
         console.log('123')
       })
@@ -167,7 +166,7 @@ export default {
         isShowProgressTips: 1, // 默认为1，显示进度提示
         success: function (res) {
           var serverId = res.serverId; // 返回音频的服务器端ID
-          that.axio.post('/data',{data:serverId})
+          that.axio.post('http://tsml520.cn/data',{data:serverId})
             .then(data=>{
               console.log('发送成功',data)
             })
@@ -179,7 +178,7 @@ export default {
   components: { Box, Scenery },
   mounted(){
     console.log('进来了')
-    this.axio.get('/').then(data=>{
+    this.axio.get('http://tsml520.cn/').then(data=>{
       let res = data.data
       console.log('signature',res.signature)
       wx.config({

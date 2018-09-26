@@ -24,16 +24,16 @@ Vue.use(Mint)
 Vue.config.productionTip = false
 
 
-let url = null 
-if (process.env.NODE_ENV == 'development') {
-  url = 'http://tsml520.cn'
+// let url = null 
+// if (process.env.NODE_ENV == 'development') {
+//   url = 'http://tsml520.cn'
 
-}else {
-  url = 'http://tsml520.cn' 
-}
-Vue.prototype.axio = axios.create({
-  baseURL: url,
-})
+// }else {
+//   url = 'http://tsml520.cn' 
+// }
+// Vue.prototype.axio = axios.create({
+//   baseURL: url,
+// })
 
 
 new Vue({
