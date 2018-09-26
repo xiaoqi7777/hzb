@@ -66,6 +66,8 @@
 <script>
 import Box from "../slot/Box.vue";
 import Scenery from "./Scenery.vue";
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -76,7 +78,7 @@ export default {
     };
   },
   created(){
-    this.axio.get(`/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=http://tsml520.cn/wx/he_live&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`)
+    axios.get(`/api/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=http://tsml520.cn/wx/he_live&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`)
       .then(data=>{ 
         console.log('123')
       })
