@@ -31,10 +31,7 @@ Vue.config.productionTip = false
 // }else {
 //   url = 'http://tsml520.cn' 
 // }
-// Vue.prototype.axio = axios.create({
-//   baseURL: url,
-// })
-
+Vue.prototype.axio = axios
 
 new Vue({
   el: '#app',
