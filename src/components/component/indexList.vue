@@ -77,7 +77,7 @@ export default {
     };
   },
   created(){
-    this.axio.get(`/api/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=http://tsml520.cn/wx/he_live&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`)
+    this.axio.get('/api'+`/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=http://tsml520.cn/wx&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`)
       .then(data=>{ 
         console.log('123')
       })
