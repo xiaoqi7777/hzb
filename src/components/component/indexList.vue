@@ -76,7 +76,7 @@ export default {
     };
   },
   created(){
-    that.axio.get(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=http://tsml520.cn/wx/he_live&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`)
+    this.axio.get(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=http://tsml520.cn/wx/he_live&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`)
       .then(data=>{
         console.log('123')
       })
