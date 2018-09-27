@@ -81,9 +81,20 @@ export default {
     //   .then(data=>{ 
     //     console.log('123')
     //   })
-    location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=${encodeURI('http://tsml520.cn/wx/he_live')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
-  
-  },
+    
+    // console.log(location.href)
+    // let str = 'http://tsml520.cn/wx/he_live?code=0010O3bd0LsZ4t1bp8cd0eI8bd00O3bU&state=STATE'
+    let str= location.href
+    if(str.indexOf('code=')>-1){
+      return;
+    }else{
+      location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=${encodeURI('http://tsml520.cn/wx/he_live')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+    }
+
+
+//                   https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=http://tsml520.cn/wx/he_live&response_type=code&scope=snsapi_userinfo&state=STATE&uin=MjU3NzAwMTQ2Mg%3D%3D&key=f7f328af0c6213742efebc7e1f6586465d4c55045affbdd5b8e1665d6860f12907160b219175ab2a452f543ffde990eb&pass_ticket=25KRMwhMXbDBd6DMRKuzD6A6VYAHn21A+7jXLK1if0YeYMCXwiWtgW/CGYqIcuJcTLLoAyfu6nlYamGlamYu0Q==
+//                   http://tsml520.cn/wx/he_live?code=0010O3bd0LsZ4t1bp8cd0eI8bd00O3bU&state=STATE
+},
   methods:{
     btn5(){
       let that = this
