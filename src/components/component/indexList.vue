@@ -81,7 +81,7 @@ export default {
     //   .then(data=>{ 
     //     console.log('123')
     //   })
-    location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri='http://tsml520.cn:5000'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+    location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=http://tsml520.cn:5000&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
   },
   methods:{
     btn5(){
