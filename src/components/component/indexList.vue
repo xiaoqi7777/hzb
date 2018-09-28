@@ -77,6 +77,7 @@ export default {
     };
   },
   created(){
+    location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=${encodeURI('http://tsml520.cn/wx/he_live')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
 
     let str= location.href
     if(str.indexOf('code=')>-1){
