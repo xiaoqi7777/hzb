@@ -66,7 +66,7 @@
 <script>
 import Box from "../slot/Box.vue";
 import Scenery from "./Scenery.vue";
-
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -74,22 +74,35 @@ export default {
       localId:null,
       src:null,
       id:null,
+      openId:null
     };
   },
   created(){
-    location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=${encodeURI('http://tsml520.cn/wx/he_live')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
 
     let str= location.href
-    if(str.indexOf('code=')>-1){
-      return;
+    if(this.openId){
+      if(str.indexOf('code=')>-1){
+        return;
+      }else{
+        location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=${encodeURI('http://tsml520.cn/wx/he_live')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+      }
     }else{
-      location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=${encodeURI('http://tsml520.cn/wx/he_live')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+        axios.get('http://tsml520.cn/openId').then(data=>{
+          this.openId = data.openId
+        })
     }
+      
 
 
 
 },
   methods:{
+        GetQueryString (name) {
+        let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+        let r = window.location.search.substr(1).match(reg)
+        if (r != null) return unescape(unescape(r[2]))
+        return null
+      },  
     btn5(){
       let that = this
       wx.downloadVoice({
