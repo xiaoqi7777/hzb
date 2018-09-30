@@ -24,7 +24,7 @@ Vue.use(Mint)
 Vue.config.productionTip = false
 
 
-// let url = null 
+let url = 'http://tsml520.cn' 
 // if (process.env.NODE_ENV == 'development') {
 //   url = 'http://tsml520.cn'
 
@@ -32,7 +32,9 @@ Vue.config.productionTip = false
 //   url = 'http://tsml520.cn' 
 // }
 Vue.prototype.axio = axios
-
+Vue.prototype.axio = axios.create({
+  baseURL: url,
+})
 new Vue({
   el: '#app',
   router,
