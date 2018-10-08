@@ -141,18 +141,7 @@ export default {
     },
     btn6(){
 
-  wx.onMenuShareAppMessage({
-    title: '分享标题', // 分享标题
-    desc: '分享描述', // 分享描述
-    link: 'http://tsml520.cn:5000', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-    imgUrl: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1588799093,979234084&fm=58&bpow=500&bpoh=500', // 分享图标
-    type: 'link', // 分享类型,music、video或link，不填默认为link
-    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-    success: function () {
-    // 用户点击了分享后执行的回调函数 
-    alert('成功------------')
-    }
-  });
+
     //   wx.updateAppMessageShareData({ 
     //         title: '分享标题', // 分享标题
     //         desc: '分享描述------------分享描述-----------分享描述--------分享描述', // 分享描述
@@ -231,6 +220,18 @@ export default {
                 ] // 必填，需要使用的JS接口列表
       })
       wx.ready(function(){
+          wx.onMenuShareAppMessage({
+            title: '分享标题', // 分享标题
+            desc: '分享描述', // 分享描述
+            link: 'http://tsml520.cn:5000', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1588799093,979234084&fm=58&bpow=500&bpoh=500', // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+            // 用户点击了分享后执行的回调函数 
+            alert('成功------------')
+            }
+          });
           wx.checkJsApi({
               jsApiList: [
                 'startRecord'
