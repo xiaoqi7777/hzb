@@ -77,6 +77,7 @@ export default {
     };
   },
   created(){
+    console.log('123',this.$route.fullPath)
     /*
       1、分享的时候 截取 openid 
           没有
@@ -93,8 +94,13 @@ export default {
     //       this.openId = data.openId
     //     })
     // }
-      
-// location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=${encodeURI('http://tsml520.cn/index.html')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+    // let str= location.href
+
+      // if(str.indexOf('code=')>-1){
+      //     console.log('进去了')
+      // } else{
+      //   location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=${encodeURI('http://tsml520.cn/index.html')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+      // }
 
 },
   methods:{
@@ -144,11 +150,9 @@ export default {
     dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
     success: function () {
     // 用户点击了分享后执行的回调函数 
-    console.log('成功------------')
+    alert('成功------------')
     }
   });
-
-
     //   wx.updateAppMessageShareData({ 
     //         title: '分享标题', // 分享标题
     //         desc: '分享描述------------分享描述-----------分享描述--------分享描述', // 分享描述
@@ -167,6 +171,7 @@ export default {
         success: function (res) {
         var localId = res.localId;
         that.localId = localId
+        console.log('停止录制ID',that.localId)
         }
       });
     },
@@ -199,46 +204,46 @@ export default {
   mounted(){
     console.log('进来了')
     this.axio('/wx/he_live').then(data=>{console.log('1',data)})
-
-    // this.axio.get('/').then(data=>{
-    //   let res = data.data
-    //   console.log('signature',res.signature)
-    //   wx.config({
-    //       debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-    //       appId: 'wx3df629936bf31f75', // 必填，公众号的唯一标识
-    //       timestamp: res.timestamp, // 必填，生成签名的时间戳
-    //       nonceStr: res.noncestr, // 必填，生成签名的随机串
-    //       signature: res.signature,// 必填，签名
-    //       jsApiList: [               
-    //             'startRecord',
-    //             'stopRecord',
-    //             'onVoiceRecordEnd',
-    //             'translateVoice',
-    //             'playVoice',
-    //             'pauseVoice',
-    //             'stopVoice',
-    //             'uploadVoice',
-    //             'chooseImage',
-    //             'previewImage',
-    //             'downloadVoice',
-    //             'updateAppMessageShareData',
-    //             'onMenuShareAppMessage'
-    //             ] // 必填，需要使用的JS接口列表
-    //   })
-    //   wx.ready(function(){
-    //       wx.checkJsApi({
-    //           jsApiList: [
-    //             'startRecord'
-    //             ], // 需要检测的JS接口列表，所有JS接口列表见附录2,
-    //           success: function(res) {
-    //               console.log('成功获取res',res)
-    //           }
-    //       });
-    //   });
-    //   wx.error(function(res){
-    //     console.log('失败',res)
-    //   });
-    // })
+    let url = location.href 
+    this.axio.get(`/sdk/?url=${url}`).then(data=>{
+      let res = data.data
+      console.log('signature',res.signature)
+      wx.config({
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: 'wx3df629936bf31f75', // 必填，公众号的唯一标识
+          timestamp: res.timestamp, // 必填，生成签名的时间戳
+          nonceStr: res.noncestr, // 必填，生成签名的随机串
+          signature: res.signature,// 必填，签名
+          jsApiList: [               
+                'startRecord',
+                'stopRecord',
+                'onVoiceRecordEnd',
+                'translateVoice',
+                'playVoice',
+                'pauseVoice',
+                'stopVoice',
+                'uploadVoice',
+                'chooseImage',
+                'previewImage',
+                'downloadVoice',
+                'updateAppMessageShareData',
+                'onMenuShareAppMessage'
+                ] // 必填，需要使用的JS接口列表
+      })
+      wx.ready(function(){
+          wx.checkJsApi({
+              jsApiList: [
+                'startRecord'
+                ], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+              success: function(res) {
+                  console.log('成功获取res',res)
+              }
+          });
+      });
+      wx.error(function(res){
+        console.log('失败',res)
+      });
+    })
   }
 };
 </script>

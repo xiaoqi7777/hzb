@@ -12,18 +12,17 @@ import axios from 'axios'
 
 
 
-
 // import v1 from './test1/a'
-
 // v1();
+
+
 
 
 
 Vue.use(Mint)
 
 Vue.config.productionTip = false
-
-
+console.log('123')
 let url = 'http://tsml520.cn' 
 // if (process.env.NODE_ENV == 'development') {
 //   url = 'http://tsml520.cn'
