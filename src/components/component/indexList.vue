@@ -225,26 +225,24 @@ export default {
                 desc: '分享描述', // 分享描述
                 link: 'http://tsml520.cn:5000', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1588799093,979234084&fm=58&bpow=500&bpoh=500', // 分享图标
-            type: 'link', // 分享类型,music、video或link，不填默认为link
-        }, function(res) { 
-            alert('成功------------')
-        //这里是回调函数 
-        }); 
-          // wx.onMenuShareAppMessage({
-          //   title: '分享标题', // 分享标题
-          //   desc: '分享描述', // 分享描述
-          //   link: 'http://tsml520.cn:5000', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-          //   imgUrl: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1588799093,979234084&fm=58&bpow=500&bpoh=500', // 分享图标
-          //   type: 'link', // 分享类型,music、video或link，不填默认为link
-          //   dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-          //   success: function () {
-          //   // 用户点击了分享后执行的回调函数 
-          //   alert('成功------------')
-          //   }
-          // });
+                  type: 'link', // 分享类型,music、video或link，不填默认为link
+              }, function(res) { 
+                  console.log('成功------------updateAppMessageShareData')
+              //这里是回调函数 
+              }); 
+              wx.updateTimelineShareData({ 
+                      title: '', // 分享标题
+                      link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                      imgUrl: '', // 分享图标
+              }, function(res) { 
+                          console.log('成功------------updateTimelineShareData')
+
+              }); 
           wx.checkJsApi({
               jsApiList: [
-                'startRecord'
+                'startRecord',
+                'updateAppMessageShareData',
+                'updateTimelineShareData'
                 ], // 需要检测的JS接口列表，所有JS接口列表见附录2,
               success: function(res) {
                   console.log('成功获取res',res)
