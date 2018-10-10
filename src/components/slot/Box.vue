@@ -2,11 +2,11 @@
 		<article :class="$style.box"  @click="btn">
         <section :class="$style.title_img">
           <div :class="$style.active">活动</div>
-				  <img :class='$style.img' src="../../assets/img/bg.png" alt="">
+				  <img :class='$style.img' :src="item.coverUrl" alt="">
         </section>
-		   	<BoxLine>
+		   	<BoxLine :item='item'>
           <template slot="time">
-            <span :class='$style.time'>08-22 16:55</span>
+            <span :class='$style.time'>{{item.activityTime}}</span>
             <span :class='$style.number'>
                 <span :class="$style.red">
                 100
@@ -21,6 +21,7 @@
 <script>  
 import BoxLine from './BoxLine.vue'
 export default {
+  props:['item'],
   components:{
     BoxLine
   },
@@ -49,7 +50,6 @@ export default {
   .active{
     display: inline-block;
     position: absolute;
-    z-index: 1;
     margin-top: 0.5rem;
     margin-left: calc(100% - 6rem);
     background-color: #98FB98;

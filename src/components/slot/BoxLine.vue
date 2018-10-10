@@ -4,8 +4,8 @@
         <img :class="$style.img" src="../../assets/img/logo.png" alt="">
         </div>
         <div :class="$style.left">
-        <span :class="$style.title">jiangsu移动</span>
-        <span :class="$style.note">微信公众号，直播开发中</span>
+        <span :class="$style.title">{{item.userName}}</span>
+        <span :class="$style.note">{{item.activityTitle}}</span>
         </div>
         <div :class="$style.right">
           <slot name='time'>
@@ -22,7 +22,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props:['item']
+};
 </script>
 
 <style module lang='scss'>
