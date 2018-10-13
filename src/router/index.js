@@ -1,13 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import IndexList from '@/components/component/indexList'
-import index from '@/components/component/PlayDetail'
+import index from '@/components/component/PlayDetail' 
 import More from '@/components/component/More'
 import Test from '@/components/component/test'
+import sg from '@/components/component/sg'
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'sg',
+    //   component: sg
+    // },
     {
       path: '/Test',
       name: 'Test',

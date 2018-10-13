@@ -25,9 +25,16 @@ export default {
   components:{
     BoxLine
   },
+  mounted(){
+  },
   methods:{
     btn(){
-      this.$router.push({path:'/index'})
+      this.$router.push({
+        path:'/index',
+      	query:{
+		      item:this.item
+		    }
+      })
     }
   }
 };

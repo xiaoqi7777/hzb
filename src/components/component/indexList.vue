@@ -56,7 +56,6 @@ export default {
     this.postData().then(data=>{
           let res =data.data.data.activityList
           this.getListData = res
-          console.log('1res',res[0])
     })
   },
   methods:{
@@ -66,10 +65,8 @@ export default {
         let postListData = this.postListData
         return new Promise((resolve,reject)=>{
           //模拟 延迟2秒请求
-          setTimeout(function(){
             resolve(thz.axio.post('he_live/getActivityList',postListData))
             thz.isShow = true
-            },2000)
         })
       },
       loadTop() {

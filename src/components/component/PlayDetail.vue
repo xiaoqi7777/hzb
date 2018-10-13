@@ -1,10 +1,10 @@
 <template>
     <div :class='$style.playDetail'>
-                <Play/>
-    			<ChatList :class="$style.chatlist"/>
+        <Play/>
+        <ChatList :class="$style.chatlist"/>
     </div>
 </template>
-
+ 
 <script>
 import Play from "../slot/Play.vue";
 import ChatList from '../slot/ChatList.vue'

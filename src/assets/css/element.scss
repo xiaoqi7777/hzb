@@ -10,6 +10,14 @@
     margin: $margin ;
 }
 
+
+/*  
+    用法
+    &::after {
+      @include line();
+      bottom: 0;
+    }
+*/
 @mixin line ($cs:column){
     content: " ";
     @if($cs=='column'){

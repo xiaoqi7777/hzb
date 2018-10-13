@@ -18,9 +18,17 @@
     "better-scroll": "^1.13.2",
     "crypto": "^1.0.1",
     "mint-ui": "^2.2.13",
+    "socket.io-client": "^2.1.1",
+    "video.js": "^7.2.3",
+    "videojs-contrib-hls": "^5.14.1",
+    "videojs-flash": "^2.1.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "xgplayer": "^1.1.0"
+    "vue-video-player": "^5.0.2",
+    "xgplayer": "^1.1.0",
+    "xgplayer-flv": "^1.1.2",
+    "xgplayer-hls.js": "^1.1.2",
+    "xgplayer-vue": "^1.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

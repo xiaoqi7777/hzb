@@ -7,6 +7,7 @@ import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import './assets/css/reset.css'
 import axios from 'axios'
+import "video.js/dist/video-js.css";
 
 
 

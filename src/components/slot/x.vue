@@ -1,6 +1,6 @@
 <template>
     <div :class="$style.player">
-        <div :class="$style.mse" id="mse"  ></div>
+        <div :class="$style.mse" id="mse"></div>
 				<BoxLine :item='item'>
           <template slot="star" >
             <img class="star" @click='btnStar' v-show="isStar" src="../../assets/img/ic_star.png" alt="">
@@ -12,7 +12,7 @@
 
 <script>
 import BoxLine from "./BoxLine.vue";
-import Player from 'xgplayer';
+import 'xgplayer';
 import hlsjsPlayer from 'xgplayer-hls.js';
 export default {
   data(){
@@ -40,26 +40,28 @@ export default {
     },
     postPlayUrl(){
       let data = this.postData
+      console.log('11',data)
       this.axio.post('he_live/getActivityPlayUrl',data).then(data=>{
         console.log('postdata',data.data)
         let res = data.data.data
-        this.playUrl = res.playUrl || res.playbackList[0].playbackUrl
-        console.log('.......',this.playUrl)
-
-          let player = new hlsjsPlayer({
-            id: "mse",
-            url:this.playUrl,
-            width:window.innerWidth,
-            height:window.innerWidth*(337.5/600),
-            'x5-video-player-type': 'h5',
-            playsinline:true
-          });
+        this.playUrl = res.playUrl
+        console.log(this.playUrl)
       })
     }
   },
 	components:{
     BoxLine
   },
+  mounted() {
+
+    let player = new hlsjsPlayer({
+      id: "mse",
+      url:
+				"https://logos-channel.scaleengine.net/logos-channel/live/biblescreen-ad-free/playlist.m3u8",
+			width:window.innerWidth,
+			height:window.innerWidth*(337.5/600)
+		});
+  }
 };
 </script>
 <style>
@@ -72,9 +74,6 @@ export default {
 
 <style module lang='scss'>
 .player {
-  .mse{
-
-  }
 }
 
 </style>
