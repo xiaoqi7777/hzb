@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <router-view v-if="isSpinner"/>
-    <div class="spinner" v-if="!isSpinner">
-      <mt-spinner color="#26a2ff" :size=50 :type="3"></mt-spinner>
-    </div>
-    <!--  -->
+    <!-- <div v-if="isShow"> -->
+      {{cs}}
+    <!-- </div> -->
+    <!-- <router-view v-if="isShow"/> -->
   </div>
 </template>
 
@@ -13,39 +12,49 @@ export default {
   name: 'App',
   data(){
     return{
-      isSpinner:false,
+      isShow:false,
       code:null,
-      msg:null
+      cs:12333333
     }
   },
   created(){
     let str= location.href
-    let a = sessionStorage.getItem('openId')
-    if(str.indexOf('code=')>-1){
-      console.log(a)
-      console.log(str.indexOf('code=')>-1)
+    let openId = sessionStorage.getItem('openId')
+    //openId不存在
+    if(!openId){
+        if(str.indexOf('code=')>-1){
+          this.cs = '有code值+++++++++++'
+          this.isShow = true
+          console.log('不搞事情',str)
+          let url = location.href
+          let start = url.indexOf('code=')+5
+          let end = url.indexOf('&state')
+          this.code = url.slice(start,end)
+          this.axio.get(`http://tsml520.cn/wx/he_live?code=${this.code}`).then(data=>{
+            sessionStorage.clear()
+            sessionStorage.setItem("openId",data.data.openid)
+            console.log('code发送成功,获取到的openId',data.data.openid)
+          })
+        } else{
+          // location.href = 'http://www.baidu.com'
+          this.cs = '么有code值-----------'
+          this.isShow = false
+          // location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=${encodeURI('http://tsml520.cn/index.html')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+          location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6e9e12bcd5027906&redirect_uri=${encodeURI('http://tsml520.cn/index.html')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+        }
 
-      this.isSpinner = true
-      //截取code 发送给后端
-      let start = str.indexOf('code=')+5
-      let end = str.indexOf('&state')
-      this.code = str.slice(start,end)
-      this.axio.get(`http://tsml520.cn/wx/he_live?code=${this.code}`).then(data=>{
-        sessionStorage.clear()
-        sessionStorage.setItem("openId",data.data.openid)
-        console.log('code发送成功,获取到的openId',data.data.openid)
-      })
-    } else{
-      this.msg = '等待加载中,后面补上动画'
-      this.isShow = false
-      // location.href = 'http://www.baidu.com'
-      // location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3df629936bf31f75&redirect_uri=${encodeURI('http://tsml520.cn/index.html')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
-      location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6e9e12bcd5027906&redirect_uri=${encodeURI('http://tsml520.cn/index.html')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+
+    }else{
+      //正常渲染
+      console.log('正常渲染')
     }
-
+    //判断code值
+    
+    //截取code值
+      
 
     // this.axio.get(`/sdk/?url=${url}`).then(data=>{
-    this.axio.get(`/wx_web/get_signature/?url=${str}`).then(data=>{
+    this.axio.get(`/wx_web/get_signature/?url=${url}`).then(data=>{
       let res = data.data
       console.log('signature',res)
       wx.config({
@@ -119,6 +128,7 @@ export default {
         console.log('失败',res)
       });
     })
+  
   }
 }
 </script>
@@ -127,11 +137,5 @@ export default {
 #app{
   height: 100%;
   width: 100%;
-}
-.spinner{
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 </style>

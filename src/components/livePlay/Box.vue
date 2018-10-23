@@ -6,7 +6,7 @@
         </section>
 		   	<BoxLine :item='item'>
           <template slot="time">
-            <span :class='$style.time'>{{item.activityTime}}</span>
+            <span :class='$style.time'>{{item.activityTime}}</span> 
             <span :class='$style.number'>
                 <span :class="$style.red">
                 100
@@ -24,8 +24,6 @@ export default {
   props:['item'],
   components:{
     BoxLine
-  },
-  mounted(){
   },
   methods:{
     btn(){

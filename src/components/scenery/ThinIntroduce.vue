@@ -18,7 +18,7 @@ export default {
 	methods:{
 		btn(item){
 			this.$router.push({
-				path:'/index',
+				path:'/sceneryPlayDetail',
 				query:{
 					item:this.item
 					}

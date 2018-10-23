@@ -37,7 +37,7 @@
         if (this.$route.path !== '/wx') {
           return
         }
-        let openid = localStorage.getItem('openid')
+        let openid = sessionStorage.getItem('openid')
         // 如果不存在openid，则检查code是否存在
         if (!openid || openid === undefined || openid === null || openid === 'undefined') {
           let code = this.GetQueryString('code')
@@ -48,14 +48,14 @@
             // 存在code，获取openid
             self.$http('post', 'wechat/getOpenid', {}, {code: code}, true).then((res) => {
               let mid = res.body || res.body.openid
-              localStorage.setItem('openid', mid)
+              sessionStorage.setItem('openid', mid)
               if (self.url) {
                 // self.$router.push('/wx/reportProblemList')
                 self.regesiterProblem()
               } else {
                 self.regesiter()
               }
-//              self.isIn(localStorage.getItem('openid'))
+//              self.isIn(sessionStorage.getItem('openid'))
             })
           }
         } else {
@@ -64,7 +64,7 @@
           } else {
             self.regesiter()
           }
-//          self.isIn(localStorage.getItem('openid'))
+//          self.isIn(sessionStorage.getItem('openid'))
         }
       },
       // 进行jssdk接入验证
@@ -144,7 +144,7 @@
       },
       // 判断当前的openId是否已经做了关联-是：直接跳转到首页，否：进行扫码注册
       isIn () {
-        let code = localStorage.getItem('openid')
+        let code = sessionStorage.getItem('openid')
         let self = this
         this.$http('post', 'wechat/getUserInfoByOpenid', {}, {openid: code}).then((res) => {
           if (String(res.code) === '500') {

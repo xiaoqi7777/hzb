@@ -3,30 +3,44 @@
 			<section :class="$style.title">
 				<div :class="$style.img"> 
 					<img src="../../assets/img/border.png" alt=""> 
-					<span>美丽南京</span> 
+					<span>{{item.groupName}}</span> 
 				</div>
-				<div :class="$style.more" @click="gengduo">
+				<div :class="$style.more" @click="gengduo(item.groupId)">
 					<span>更多></span>
 				</div>
 			</section>
 			<section :class="$style.layout">
-					<ThinIntroduce :class="$style.flex"/>
-					<ThinIntroduce :class="$style.flex"/>
+					<ThinIntroduce v-for="(value,index) in item.resourceInfos" :key='index' :item='value' :class="$style.flex"/>
+					<div :class="$style.flex1"></div>
+					<div :class="$style.flex1"></div>
 			</section>
-
-
 	</div>
 </template>
 
 <script>
-import ThinIntroduce from './ThinIntroduce.vue'
+import ThinIntroduce from '../scenery/ThinIntroduce.vue'
 export default {
+	props:['item'],
 	components:{
 		ThinIntroduce
 	},
 	methods:{
-		gengduo(){
-			this.$router.push({path:'/More'})
+		getImgList(){
+			let data = {
+					"start_num":"1",
+					"rows":"5",
+					"groupId":"8o5jkcs0sd0m8ybb0d6ue70sjxjy61ub",
+					"type":"1"
+				}
+			this.axio.post('he_live/getSceneList')
+				.then(data=>{
+
+				})
+		},
+		gengduo(groupId){
+			console.log('***********',groupId)
+			// this.getImgList()
+			this.$router.push({path:'/More',query:{	id:groupId}})
 		}
 	}
 };
@@ -60,8 +74,14 @@ export default {
 	}
 	.layout{
 		@include list(row);
+    flex-wrap:wrap;
 		.flex{
-			flex: 1
+			width: 50%
+		}
+		.flex1{
+			width: 50%;
+			height: 0;
+			overflow: hidden;
 		}
 	}
 }

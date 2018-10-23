@@ -1,15 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import IndexList from '@/components/component/indexList'
-import index from '@/components/component/PlayDetail' 
-import More from '@/components/component/More'
-import Test from '@/components/component/test'
-import sg from '@/components/component/sg'
+import IndexList from '@/components/index/indexList'
+import index from '@/components/livePlay/PlayDetail' 
+import More from '@/components/scenery/More'
+import Test from '@/components/index/test'
+import vue from '@/components/vue'
+
+import SceneryPlayDetail from '@/components/scenery/sceneryPlayDetail'
+
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
+  routes: [ 
     // {
     //   path: '/',
     //   name: 'sg',
@@ -20,6 +23,16 @@ export default new Router({
       name: 'Test',
       component: Test
     },
+    {
+      path: '/sceneryPlayDetail',
+      name: 'SceneryPlayDetail',
+      component: SceneryPlayDetail
+    },
+    // {
+    //   path: '/',
+    //   name: 'vue',
+    //   component: vue
+    // },
     {
       path: '/',
       name: 'IndexList',

@@ -3,11 +3,11 @@
         <Play/>
         <ChatList :class="$style.chatlist"/>
     </div>
-</template>
+</template> 
  
 <script>
-import Play from "../slot/Play.vue";
-import ChatList from '../slot/ChatList.vue'
+import Play from "./Play.vue";
+import ChatList from '../scenery/ChatList.vue'
     export default {
         components:{
 					Play,

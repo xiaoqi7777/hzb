@@ -1,13 +1,13 @@
 <template>
     <div :class="$style.player">
         <div :class="$style.mse" id="mse"  ></div>
-				<BoxLine :item='item'>
+				<BoxLine :item='item'> 
           <template slot="star" >
             <img class="star" @click='btnStar' v-show="isStar" src="../../assets/img/ic_star.png" alt="">
             <img class="star" @click='btnStar' v-show="!isStar" src="../../assets/img/ic_no_star.png" alt="">
           </template>
         </BoxLine>
-		</div>
+		</div> 
 </template>
 
 <script>
@@ -31,7 +31,7 @@ export default {
     this.item = this.$route.query.item
     this.userId = this.item.userId
     this.postData.activityId = this.item.activityId
-    console.log('id',this.item.activityId)
+    console.log('id',this.postData.activityId)
     this.postPlayUrl()
   },
   methods:{

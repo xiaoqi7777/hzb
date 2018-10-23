@@ -18,6 +18,9 @@
 <script>
   export default {
     props:['commitList'],
+    mounted(){
+      console.log('聊天列表',this.commitList)
+    },
     filters:{
         formatDate:function (val) {
           // let a = 2018 10 11/ 13/31/06
@@ -27,8 +30,8 @@
           let h = val.substr(8,2)
           let m = val.substr(10,2)
           let s = val.substr(12,2)
-
-          return  `${M}-${d} ${m}:${s}`
+          console.log(val,Y,M,d,h,m,s)
+          return  `${M}-${d} ${h}:${m}`
         }
     }
   }
