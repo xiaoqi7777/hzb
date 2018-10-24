@@ -91,7 +91,6 @@ export default {
 					if(res.ret.code === 0){
 						this.commitList = res.data.commentList
 						console.log('聊天的数据-----------',this.commitList)
-
 					}
 				})
 		},
@@ -120,9 +119,7 @@ export default {
 		}
 	},
 	mounted(){
-		
 			this.parentInfo = this.$refs.top
-
 	},
 	created(){
 		this.item = this.$route.query.item

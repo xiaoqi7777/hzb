@@ -4,8 +4,7 @@
       <img src="../../assets/img/timg.jpg" alt="">
     </section>
 
-  <mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" :bottom-method="loadBottom"  :bottom-all-loaded="allLoaded" ref="loadmore" >
-    <!-- <mt-loadmore  :top-method="loadTop" :bottom-method="loadBottom" :bottom-distance="20" :bottom-all-loaded="allLoaded" ref="loadmore"> -->
+  <mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" :bottom-method="loadBottom" :auto-fill="autoFill" :bottom-all-loaded="allLoaded" ref="loadmore" >
       <div :class="$style.load">
           <ThinIntroduce v-for='(item,index) in data' :key="index" :item='item' :class="$style.flex"/>
           <div :class="$style.div"></div>
@@ -25,16 +24,16 @@ import ThinIntroduce from './ThinIntroduce'
     data(){
       return{
       topStatus: "",
-        allLoaded:true,
+        allLoaded:false,
         id:null,
         data:null,
         submitData: {
-            "start_num":"0",
-            "rows":"8",
-            "groupId":'',
-            "type":"1"
+            "start_num": "1",
+            "rows": "8",
+            "groupId": '',
+            "type": "1",
           },
-        isFalse:false
+        autoFill:false
       }
     },
     components:{
@@ -50,9 +49,9 @@ import ThinIntroduce from './ThinIntroduce'
             if(this.data == null){
               this.data = res.resourceList
             }else{
+              console.log('+++++++++++++',data.data)
               this.data.push(...res.resourceList)
             }
-
           })
       },
       handleTopChange(status) {
@@ -62,11 +61,9 @@ import ThinIntroduce from './ThinIntroduce'
       loadTop() {
         let thz = this
         this.$refs.loadmore.onTopLoaded();
-        
       },
       loadBottom() {
           this.$refs.loadmore.onBottomLoaded();
-          this.allLoaded = false;// 若数据已全部获取完毕
           this.submitData.start_num ++
           this.getData()
       }

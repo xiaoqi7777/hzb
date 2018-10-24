@@ -113,9 +113,7 @@ export default {
           this.allLoaded = true
           this.$refs.loadmore.onBottomLoaded();
         })
-        
       }
-
   },
   components: { Box, Scenery },
 };

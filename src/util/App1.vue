@@ -19,7 +19,7 @@ export default {
   },
   created(){
     let str= location.href
-    let openId = sessionStorage.getItem('openId')
+    let openId = localStorage.getItem('openId')
     //openId不存在
     if(!openId){
         if(str.indexOf('code=')>-1){

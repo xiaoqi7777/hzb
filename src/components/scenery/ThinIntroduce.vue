@@ -3,8 +3,8 @@
         <div :class='$style.img' @click="btn(item)">
             <img :src="item.coverPath" alt="">
 						<p :class='$style.number'>
-								<span>观{{item.playCount}}</span>
-								<span>赞{{item.praiseCount}}</span>
+								<span :class='$style.spanLeft'><img src="@/assets/img/guankan_times.png" alt="" >{{item.playCount}}</span>
+								<span :class='$style.spanRight'><img src="@/assets/img/btn_not_praise.png" alt="" >{{item.praiseCount}}</span>
 						</p>
          		<p :class="$style.title">{{item.name}}</p>
         </div>
@@ -49,8 +49,31 @@ export default {
 			line-height: 1.5rem;
 			position: absolute;
 			margin-top: -1.5rem;
-			span{
+			width: 100%;
+			.spanLeft{
 				font-size: 12px;
+				margin-left: 30px ;
+				img{
+					position: absolute;
+					left: 3px;
+					top: 5px;
+					width: 25px;
+					height: 15px;
+				}
+			}
+			.spanRight{
+				float: right;
+				right: 10px;
+				font-size: 12px;
+				margin-left: 30px ;
+				position: relative;
+				img{
+					position: absolute;
+					left: -25px;
+					top: 0px;
+					width: 25px;
+					height: 20px;
+				}
 			}
 		}
 		.title{

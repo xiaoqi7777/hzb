@@ -57,7 +57,8 @@ export default {
 			commitList:null,
 			content:null,
 			isShow:false,
-			parentInfo:null
+			parentInfo:null,
+			openId:null
 		}
 	},
 	methods:{
@@ -97,14 +98,18 @@ export default {
 		},
 		submit(e){
 			e.stopPropagation()
-			var openId = sessionStorage.getItem("openId");
-			console.log('openId',openId)
-			if(!openId){
+			console.log('openId',this.openId)
+			if(!this.content){
+				alert('请输入内容')
+				return
+			}
+			if(!this.openId){
 				alert('请关注和直播')
+        location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6e9e12bcd5027906&redirect_uri=${encodeURI('http://tsml520.cn/index.html')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
 				return
 			}
 			let postCommit={
-						"openId":openId,
+						"openId":this.openId,
 						"resourceId":this.item.resourceId?this.item.resourceId:this.item.activityId,
 						"content":this.content
 					}
@@ -120,7 +125,8 @@ export default {
 		}
 	},
 	mounted(){
-		
+			this.openId = localStorage.getItem("openId");
+			console.log('openId++++++',this.openId)
 			this.parentInfo = this.$refs.top
 
 	},

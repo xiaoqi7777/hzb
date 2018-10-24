@@ -16,7 +16,7 @@
 
 
 <!-- tab-container -->
-<mt-tab-container v-model="selected" class="page-padding"  v-if="!isSpinner">
+<mt-tab-container v-model="selected" class="page-padding" :auto-fill="autoFill"  v-if="!isSpinner">
 
   <mt-tab-container-item id="1">
     <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded"  ref="loadmore">
@@ -54,7 +54,8 @@ export default {
       },
       getListData:null,
       isShow:false,
-      isSpinner:true
+      isSpinner:true,
+      autoFill:false
     };
   },
   created(){
