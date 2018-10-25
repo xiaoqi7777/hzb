@@ -24,11 +24,11 @@ export default {
     // 1、是否有openid(是否关注过)
     // 2、判断URL是否有code值(肯定没关注过,针对新手)
     // 3、如果没有就跳转鉴权
-			console.log('openId',openId)
-    if(!openId){
+      console.log('openId',openId)
+      alert(str.indexOf('code=')>-1)
+    if(!openId || str.indexOf('code=')>-1){
       if(str.indexOf('code=')>-1){
           console.log(str.indexOf('code=')>-1)
-          this.isSpinner = true
           //截取code 发送给后端
           let start = str.indexOf('code=')+5
           let end = str.indexOf('&state')
@@ -45,8 +45,26 @@ export default {
         location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6e9e12bcd5027906&redirect_uri=${encodeURI('http://tsml520.cn/index.html')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
       }
     }
-    this.isSpinner = true
+    
+    openId = localStorage.getItem('openId')
+    //判断openId 是否关注过
+    if(!(str.indexOf('code=')>-1)){
+      this.axio.get(`/wx/get_wx_user_info_by_openid/${openId}`).then(data=>{
+            console.log('关注信息',data.data.subscribe)
+              if(data.data.subscribe != 1){
+                this.isSpinner = false
+                alert('为关注，请先关注')
+                location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6e9e12bcd5027906&redirect_uri=${encodeURI('http://tsml520.cn/index.html')}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+                // location.href = `http://baidu.com`
 
+                return;
+              }else{
+                this.isSpinner = true
+              }
+      })
+    }
+                this.isSpinner = true
+    
 
     this.axio.get(`/wx_web/get_signature/?url=${str}`).then(data=>{
       let res = data.data

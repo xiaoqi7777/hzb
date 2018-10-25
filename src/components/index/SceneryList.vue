@@ -32,10 +32,6 @@ export default {
 					"groupId":"8o5jkcs0sd0m8ybb0d6ue70sjxjy61ub",
 					"type":"1"
 				}
-			this.axio.post('he_live/getSceneList')
-				.then(data=>{
-
-				})
 		},
 		gengduo(groupId){
 			console.log('***********',groupId)

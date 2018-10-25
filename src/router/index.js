@@ -9,7 +9,7 @@ import vue from '@/components/vue'
 import SceneryPlayDetail from '@/components/scenery/sceneryPlayDetail'
 
 
-Vue.use(Router)
+Vue.use(Router) 
 
 export default new Router({
   routes: [ 

@@ -1,17 +1,38 @@
 <template>
     <div :class='$style.playDetail'>
-        <Play/>
+			<div :class='$style.play' v-show="isSpinner">
+        <Play @childrenVlue='showFn'/>
         <ChatList :class="$style.chatlist"/>
+			</div>
+			        <!-- 等待的 圈圈动画 -->
+			<div class="spinner" v-show="!isSpinner">
+				<mt-spinner color="#26a2ff" :size=50 :type="3"></mt-spinner>
+			</div>
     </div>
 </template> 
  
-<script>
+<script> 
 import Play from "./Play.vue";
 import ChatList from '../scenery/ChatList.vue'
     export default {
         components:{
 					Play,
-					ChatList
+					ChatList,
+				},
+				data(){
+					return{
+						isSpinner:false
+					}
+				},
+				created(){
+					this.showFn()
+				},
+				methods:{
+					showFn(data){
+						if(data){
+							this.isSpinner = true
+						}
+					}
 				}
     }
 </script>
@@ -20,10 +41,13 @@ import ChatList from '../scenery/ChatList.vue'
 @import '../../assets/css/element.scss';
 .playDetail{
     height: 100%;
-    @include list(column);
-    .chatlist{
-        flex: 1;
-        margin-top: 0.5rem;
-    }
+		.play{
+			@include list(column);
+	    height: 100%;
+			.chatlist{
+					flex: 1;
+					margin-top: 0.5rem;
+			}
+		}
 }
 </style>

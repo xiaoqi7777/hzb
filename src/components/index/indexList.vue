@@ -55,7 +55,8 @@ export default {
       getListData:null,
       isShow:false,
       isSpinner:true,
-      autoFill:false
+      autoFill:false,
+      stopLoadData:false,
     };
   },
   created(){
@@ -63,6 +64,7 @@ export default {
     this.postData().then(data=>{
           let res =data.data.data.activityList
           this.getListData = res
+          console.log(res,'--',this.getListData)
           this.isSpinner = false
           // if(this.getListData){alert('有数据',this.getListData)}
     })
@@ -86,7 +88,7 @@ export default {
             resolve(thz.axio.post('he_live/getActivityList',postListData))
             thz.isShow = true
         })
-      },
+      }, 
       loadTop() {
         let thz = this
         this.postListData={
@@ -100,14 +102,20 @@ export default {
         })
       },
       loadBottom() {
+        if(this.stopLoadData){
+         this.allLoaded = true
+        }
         let thz = this
         this.postListData={
-            start_num:1,
-            rows:this.postListData.rows+5
+            start_num:++this.postListData.start_num,
+            rows:this.postListData.rows
         }
         this.postData().then(data=>{
           let res =data.data.data.activityList
-          this.getListData = res
+          if(res.length === 0){
+            this.stopLoadData = true
+          }
+          this.getListData.push(...res)
           this.$refs.loadmore.onBottomLoaded();
         })
         

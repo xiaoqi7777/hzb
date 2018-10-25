@@ -1,9 +1,15 @@
 <template>
     <div :class='$style.playDetail'  @click="btnShow($event)">
-        <Play/>
-        <ChatList :class="$style.chatlist"/>
+        <div :class="$style.play"  v-show="isSpinner">
+          <Play @childrenVlue='showFn'/>
+          <ChatList :class="$style.chatlist"/>
+        </div>
+        <!-- 等待的 圈圈动画 -->
+        <div class="spinner" v-show="!isSpinner">
+          <mt-spinner color="#26a2ff" :size=50 :type="3"></mt-spinner>
+        </div>
     </div>
-</template> 
+</template>  
  
 <script>
 import Play from "../livePlay/Play.vue";
@@ -14,7 +20,20 @@ export default {
     Play,
     ChatList
   },
+  data(){
+    return{
+      isSpinner:false 
+    }
+  },
+  created(){
+    this.showFn()
+  },
   methods: {
+    showFn(data){
+      if(data){
+        this.isSpinner = true
+      }
+    },
     btnShow(e) {
       let dom = e.target;
       console.log("eeeeeeee11111111111111");
@@ -30,11 +49,14 @@ export default {
 <style module lang='scss'>
 @import "../../assets/css/element.scss";
 .playDetail {
-  height: 100%;
+    height: 100%;
+  .play{
   @include list(column);
-  .chatlist {
-    flex: 1;
-    margin-top: 0.5rem;
+    height: 100%;
+    .chatlist {
+      flex: 1;
+      margin-top: 0.5rem;
+    }
   }
 }
 </style>

@@ -45,7 +45,7 @@ export default {
         let res = data.data.data
         this.playUrl = res.playUrl || res.playbackList[0].playbackUrl
         console.log('.......',this.playUrl)
-
+          this.$emit('childrenVlue',this.playUrl)
           let player = new hlsjsPlayer({
             id: "mse",
             url:this.playUrl,

@@ -7,7 +7,7 @@
             <img class="star" @click='btnStar' v-show="!isStar" src="../../assets/img/ic_no_star.png" alt="">
           </template>
         </BoxLine> -->
-		</div> 
+		</div>  
 </template>
 
 <script>
@@ -44,7 +44,7 @@ export default {
         let res = data.data.data
         this.playUrl = res.playUrl || res.profileList[0].url
         console.log('.......',this.playUrl)
-
+          this.$emit('childrenVlue',false)
           let player = new hlsjsPlayer({
             id: "mse",
             url:this.playUrl,
