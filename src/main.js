@@ -3,27 +3,22 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Mint from 'mint-ui'
-import 'mint-ui/lib/style.css'
-import './assets/css/reset.css'
+// import 'mint-ui/lib/style.css'  //0.5s
+import './assets/css/reset.css' //0.5s
 import axios from 'axios'
-import "video.js/dist/video-js.css";
+import { Button , TabContainer, TabContainerItem, Navbar, TabItem,  Swipe, SwipeItem, Loadmore, Spinner   } from 'mint-ui';
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button);
+Vue.component(TabContainer.name, TabContainer);
+Vue.component(TabContainerItem.name, TabContainerItem);
+Vue.component(Navbar.name, Navbar);
+Vue.component(TabItem.name, TabItem);
+Vue.component(Loadmore.name, Loadmore);
+Vue.component(Spinner.name, Spinner);
 
-
-
-
-
-// import v1 from './test1/a'
-// v1();
-
-
-
-
-
-Vue.use(Mint)
 
 Vue.config.productionTip = false
-console.log('123')
 let url = 'http://tsml520.cn' 
 // if (process.env.NODE_ENV == 'development') {
 //   url = 'http://tsml520.cn'

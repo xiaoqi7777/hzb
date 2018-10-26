@@ -14,8 +14,9 @@
           <div  :class="$style.chatTab">
 						<mt-tab-container v-model="selected"  class="parentHeight">
 							<mt-tab-container-item id="1" >
-								<!-- <div class="div">12</div> -->
-								<Commit :commitList='item' v-for="(item,index) in commitList" :key='index'/>
+								<mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill='false' ref="loadmore">
+									<Commit :commitList='item' v-for="(item,index) in commitList" :key='index'/>
+								</mt-loadmore>
 							</mt-tab-container-item>
 							<mt-tab-container-item id="2">
 								<MovieDetail :item='item'/>
@@ -58,7 +59,13 @@ export default {
 			content:null,
 			isShow:false,
 			parentInfo:null,
-			openId:null
+			openId:null,
+			allLoaded:false,
+			getCommit:{
+				"start_num":"1",
+				"rows":"5",
+			},
+			stopLoadData:false
 		}
 	},
 	methods:{
@@ -72,27 +79,42 @@ export default {
 		// 			this.isShow = false
 		// 		}
 		// },
+		loadTop(){
+			this.getCommit.start_num = 1
+			this.getCommitList()
+  		this.$refs.loadmore.onTopLoaded();
+		},
+		loadBottom(){
+			if(this.stopLoadData){
+				this.allLoaded = true;
+			}
+			this.getCommit.start_num++
+			this.getCommitList()
+		  this.$refs.loadmore.onBottomLoaded();
+		},
 		focus(e){
 			e.stopPropagation()
-			// this.$refs.inp.style.position = 'fixed'
 			let top = this.$refs.top
 			let thz = this
-			// thz.scrollIntoViewIfNeeded()	
-			// window.scrollTo(0,10)
 		},
 		getCommitList(){
 			let getCommit={
-						"start_num":"1",
-						"rows":"10",
-						"resourceId":this.item.resourceId?this.item.resourceId:this.item.activityId
+						"resourceId":this.item.resourceId?this.item.resourceId:this.item.activityId,
+						...this.getCommit
 					}
 			this.axio.post('he_live/getCommentList',getCommit)
 				.then(data=>{
 					let res = data.data
 					if(res.ret.code === 0){
-						this.commitList = res.data.commentList
+						if(res.data.commentList.length === 0){
+							this.stopLoadData = true
+						}
+						if(this.getCommit.start_num == 1){
+							this.commitList = res.data.commentList
+						}else{
+							this.commitList.push(...res.data.commentList)
+						}
 						console.log('聊天的数据-----------',this.commitList)
-
 					}
 				})
 		},

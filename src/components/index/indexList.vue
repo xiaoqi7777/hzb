@@ -26,7 +26,7 @@
     </mt-loadmore>
   </mt-tab-container-item>
   <mt-tab-container-item id="2">
-    <Scenery />
+    <Scenery v-if="isShow"/>
   </mt-tab-container-item>
 </mt-tab-container>
 
@@ -53,10 +53,11 @@ export default {
         rows:5
       },
       getListData:null,
-      isShow:false,
       isSpinner:true,
       autoFill:false,
       stopLoadData:false,
+      //点击实景才加载
+      isShow:true,
     };
   },
   created(){
@@ -76,6 +77,7 @@ export default {
       console.log('1')
     },
     btn2(){
+      this.isShow = true
       // sessionStorage.setItem('selected',2)
       console.log('2')
     },
@@ -86,7 +88,6 @@ export default {
         return new Promise((resolve,reject)=>{
           //模拟 延迟2秒请求
             resolve(thz.axio.post('he_live/getActivityList',postListData))
-            thz.isShow = true
         })
       }, 
       loadTop() {

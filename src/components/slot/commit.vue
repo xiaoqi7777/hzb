@@ -29,12 +29,6 @@
   .block{
     @include list(row);
     border-bottom: 0.5px solid gray;
-    // &::after {
-    //   @include line();
-    //   margin: 0 10px;
-    //   bottom: 0;
-    //   border: 0.5px solid gray;
-    // }
     padding:10px;
     .left{
       @include list(row);

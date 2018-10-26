@@ -33,7 +33,7 @@ export default {
     BoxLine
   },
   mounted(){
-    // this.status = this.item.status
+    this.status = this.item.status
     console.log('+++++++++-',this.item)
   },
   methods:{

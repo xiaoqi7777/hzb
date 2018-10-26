@@ -44,14 +44,18 @@ export default {
         let res = data.data.data
         this.playUrl = res.playUrl || res.profileList[0].url
         console.log('.......',this.playUrl)
-          this.$emit('childrenVlue',false)
+          this.$emit('childrenVlue',true)
           let player = new hlsjsPlayer({
             id: "mse",
             url:this.playUrl,
             width:window.innerWidth,
             height:window.innerWidth*(337.5/600),
-            'x5-video-player-type': 'h5',
-            playsinline:true
+            // 'x5-video-player-type': 'h5',
+            // playsinline:true,
+            // autoplay: true,
+            // volume:0,
+            // pip: true,
+            // autoplayMuted:true
           });
       })
     }

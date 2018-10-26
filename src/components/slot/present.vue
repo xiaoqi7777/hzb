@@ -50,6 +50,7 @@ import Brother from '@/utils/brother';
         y:null,
         bg:null,
         bged:null,
+        isMotion:false
       }
     },
     // mounted(){
@@ -57,6 +58,8 @@ import Brother from '@/utils/brother';
     // },
     methods:{
       img(dom){
+        //开始运行的商品 禁止被点
+        if(!this.isMotion){
         let target = this.$refs[dom]
 
         if(this.bged){
@@ -72,6 +75,7 @@ import Brother from '@/utils/brother';
         this.y = targetInfo.top + targetInfo.height/2 
         this.ball = target.children[0].src
         console.log(this.x,this.y)
+        }
       },
       btn(){
         console.log(this.sd)
@@ -83,6 +87,7 @@ import Brother from '@/utils/brother';
       },
       beforeEnter(el){
           //小球初始化 位子
+          this.isMotion = true
           let ball = document.getElementsByClassName('mask-item')[0]
           ball.style.transform = `translate3d(0,0,0)`
           console.log(this.x,this.y,el.style.top,el.style.left)
@@ -114,6 +119,7 @@ import Brother from '@/utils/brother';
           console.log('进入时候', window.innerHeight ,this.parentInfo.getBoundingClientRect().height,domY)
       },
       afterEnter(){
+        this.isMotion = false
         this.isBtn = true
         this.show = false
         console.log('动画完成后')
