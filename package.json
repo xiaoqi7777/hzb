@@ -19,6 +19,7 @@
     "socket.io-client": "^2.1.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
+    "vue-star": "^0.0.4",
     "xgplayer": "^1.1.0",
     "xgplayer-hls.js": "^1.1.2"
   },

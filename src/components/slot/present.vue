@@ -3,7 +3,7 @@
     <ul :class="$style.ul" id="ul">
           <div @click="img('dom1')" ref="dom1" :class="$style.img">
             <img  src="@/assets/img/gift_praise.png" alt="">
-          </div> 
+          </div>  
 
           <div @click="img('dom2')" ref="dom2" :class="$style.img">
             <img src="@/assets/img/gift_red_packet.png" alt="">
@@ -45,7 +45,8 @@ import Brother from '@/utils/brother';
       return{
         show: false,
         isBtn:true,
-        ball: 'https://upload-images.jianshu.io/upload_images/1864602-ec73f549171a6601.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240',
+        // https://upload-images.jianshu.io/upload_images/1864602-ec73f549171a6601.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240
+        ball: null,
         x:null,
         y:null,
         bg:null,
@@ -53,9 +54,7 @@ import Brother from '@/utils/brother';
         isMotion:false
       }
     },
-    // mounted(){
-    //   console.log(this.height)
-    // },
+
     methods:{
       img(dom){
         //开始运行的商品 禁止被点
@@ -69,18 +68,14 @@ import Brother from '@/utils/brother';
         this.bged = target 
 
         let targetInfo = target.getBoundingClientRect()
-        console.log(targetInfo.top )
 
         this.x = targetInfo.left + targetInfo.width/2
         this.y = targetInfo.top + targetInfo.height/2 
         this.ball = target.children[0].src
-        console.log(this.x,this.y)
         }
       },
       btn(){
-        console.log(this.sd)
-        if(this.isBtn){
-          console.log('点击此时')
+        if(this.isBtn && this.ball){
           this.isBtn = false
           this.show = !this.show
         }   
@@ -90,7 +85,7 @@ import Brother from '@/utils/brother';
           this.isMotion = true
           let ball = document.getElementsByClassName('mask-item')[0]
           ball.style.transform = `translate3d(0,0,0)`
-          console.log(this.x,this.y,el.style.top,el.style.left)
+          // console.log(this.x,this.y,el.style.top,el.style.left)
            let x = this.x
            //现在相对的不是顶端 当前组件(设置了position)
            let y = this.y - (window.innerHeight-this.$refs.layout.offsetHeight)
@@ -116,13 +111,12 @@ import Brother from '@/utils/brother';
           ball.style.transform = `translate3d(-${x}px,0,0) rotateZ(270deg) `
           
           // ball.style.background = 'blue'
-          console.log('进入时候', window.innerHeight ,this.parentInfo.getBoundingClientRect().height,domY)
+          // console.log('进入时候', window.innerHeight ,this.parentInfo.getBoundingClientRect().height,domY)
       },
       afterEnter(){
         this.isMotion = false
         this.isBtn = true
         this.show = false
-        console.log('动画完成后')
       },
       stopBtn(e){
         e.stopPropagation()

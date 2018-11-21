@@ -60,14 +60,14 @@ export default {
           if(res.resourceList.length === 0){
             this.stopLoadData = true
           }
-          console.log("+++++++++++++", data.data);
+          // console.log("+++++++++++++", data.data);
           this.data.push(...res.resourceList);
         }
       });
     },
     handleTopChange(status) {
       this.topStatus = status;
-      console.log("handleTopChange");
+      // console.log("handleTopChange");
     },
     loadTop() {
       let thz = this;

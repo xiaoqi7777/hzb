@@ -13,7 +13,7 @@
 <script>
 import BoxLine from "./BoxLine.vue";
 import Player from 'xgplayer';
-import hlsjsPlayer from 'xgplayer-hls.js';
+// import hlsjsPlayer from 'xgplayer-hls.js';
 export default {
   data(){
     return{
@@ -40,22 +40,19 @@ export default {
     postPlayUrl(){
       let data = this.postData
       this.axio.post('he_live/getScenePlayUrl',data).then(data=>{
-        console.log('shijing-----------------',data.data.data)
+        // console.log('shijing-----------------',data.data.data)
         let res = data.data.data
         this.playUrl = res.playUrl || res.profileList[0].url
-        console.log('.......',this.playUrl)
+        // console.log('.......',this.playUrl)
           this.$emit('childrenVlue',true)
-          let player = new hlsjsPlayer({
+          let player = new Player({
             id: "mse",
             url:this.playUrl,
             width:window.innerWidth,
             height:window.innerWidth*(337.5/600),
-            // 'x5-video-player-type': 'h5',
-            // playsinline:true,
-            // autoplay: true,
-            // volume:0,
-            // pip: true,
-            // autoplayMuted:true
+            playsinline:true,
+            autoplay: true,
+
           });
       })
     }

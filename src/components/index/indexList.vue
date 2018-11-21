@@ -65,7 +65,7 @@ export default {
     this.postData().then(data=>{
           let res =data.data.data.activityList
           this.getListData = res
-          console.log(res,'--',this.getListData)
+          // console.log(res,'--',this.getListData)
           this.isSpinner = false
           // if(this.getListData){alert('有数据',this.getListData)}
     })
@@ -74,12 +74,12 @@ export default {
   methods:{
     btn1(){
       // sessionStorage.setItem('selected',1)
-      console.log('1')
+      // console.log('1')
     },
     btn2(){
       this.isShow = true
       // sessionStorage.setItem('selected',2)
-      console.log('2')
+      // console.log('2')
     },
       //配合动态,请求封装成Promise
       postData(){

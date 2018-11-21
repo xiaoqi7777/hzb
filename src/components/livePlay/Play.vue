@@ -35,7 +35,7 @@ export default {
     this.item = this.$route.query.item
     this.userId = this.item.userId
     this.postData.activityId = this.item.activityId
-    console.log('id',this.postData.activityId)
+    // console.log('id',this.postData.activityId)
     this.postPlayUrl()
   },
   methods:{
@@ -45,22 +45,18 @@ export default {
     postPlayUrl(){
       let data = this.postData
       this.axio.post('he_live/getActivityPlayUrl',data).then(data=>{
-        console.log('postdata',data.data)
+        // console.log('postdata',data.data)
         let res = data.data.data
         this.playUrl = res.playUrl || res.playbackList[0].playbackUrl
-        console.log('.......',this.playUrl)
+        // console.log('.......',this.playUrl)
           this.$emit('childrenVlue',true)
           let player = new Player({
             id: "mse",
             url:this.playUrl,
             width:window.innerWidth,
             height:window.innerWidth*(337.5/600),
-            // 'x5-video-player-type': 'h5',
-            // playsinline:true,
-            // autoplay: true,
-            // volume:0,
-            // pip: true,
-            // autoplayMuted:true
+            playsinline:true,
+            autoplay: true,
           });
       })
     }

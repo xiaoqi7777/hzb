@@ -137,7 +137,7 @@
             }
           },
           cancel: function (res) {
-            console.log('取消扫一扫')
+            // console.log('取消扫一扫')
             window.wx.closeWindow()
           }
         })

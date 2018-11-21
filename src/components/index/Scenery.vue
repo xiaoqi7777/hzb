@@ -46,7 +46,7 @@ export default {
 			this.axio.post('he_live/getSceneGroupListWith2',data)
 				.then(data=>{
 					this.playList = data.data.data.resourceGroupInfos
-					console.log(data)
+					// console.log(data)
 				})
 		}
 

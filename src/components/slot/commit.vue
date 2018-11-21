@@ -19,7 +19,7 @@
   export default {
     props:['commitList'],
     mounted(){
-      console.log('聊天列表',this.commitList)
+      // console.log('聊天列表',this.commitList)
     }
   }
 </script>

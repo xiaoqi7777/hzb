@@ -34,7 +34,7 @@ export default {
   },
   mounted(){
     this.status = this.item.status
-    console.log('+++++++++-',this.item)
+    // console.log('+++++++++-',this.item)
   },
   methods:{
     btn(){

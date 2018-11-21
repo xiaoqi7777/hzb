@@ -34,7 +34,7 @@ export default {
 				}
 		},
 		gengduo(groupId){
-			console.log('***********',groupId)
+			// console.log('***********',groupId)
 			// this.getImgList()
 			this.$router.push({path:'/More',query:{	id:groupId}})
 		}

@@ -19,7 +19,7 @@ Vue.component(Spinner.name, Spinner);
 
 
 Vue.config.productionTip = false
-let url = 'http://tsml520.cn' 
+let url = 'http://access.hezhibo.com' 
 // if (process.env.NODE_ENV == 'development') {
 //   url = 'http://tsml520.cn'
 
@@ -39,7 +39,7 @@ Vue.filter('formatDate',function (val) {
   let h = val.substr(8,2)
   let m = val.substr(10,2)
   let s = val.substr(12,2)
-  console.log(val,Y,M,d,h,m,s)
+  // console.log(val,Y,M,d,h,m,s)
   return  `${M}-${d} ${h}:${m}`
 })
 new Vue({

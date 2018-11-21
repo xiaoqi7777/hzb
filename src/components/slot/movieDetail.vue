@@ -20,7 +20,7 @@
 export default {
   props:['item'],
   mounted(){
-    console.log('播放详情',this.item)
+    // console.log('播放详情',this.item)
   }
 };
 </script>
@@ -30,11 +30,20 @@ export default {
 .playDetail {
   .top {
     position: relative;
+
     height: 3rem;
     @include list(column);
+    justify-content: space-around;
     &::after {
       @include line();
       bottom: 0;
+    }
+    .title{
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
     }
     .span{
       font-size: 12px;
@@ -68,6 +77,10 @@ export default {
     .span{
       margin-top: 10px;
       font-size: 12px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
     }
   }
 }

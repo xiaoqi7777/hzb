@@ -25,7 +25,7 @@
             v-bind:css="true"
           >
             <div v-show="show" class="addcart-mask">
-              <img ref="dom"  class="ball mask-item" :src="ball" alt="" width="30">
+              <img  class="ball mask-item" :src="ball" alt="" width="30">
             </div>
           </transition>
   </div>
@@ -46,7 +46,7 @@
         let ball = document.getElementsByClassName('mask-item')[0]
         el.style.transform = 'translate3d(0,0,0)'
         ball.style.transform = 'translate3d(0,0,0)'
-        console.log('11111111111111111')
+        // console.log('11111111111111111')
        },
       enter(el){
         let ball = document.getElementsByClassName('mask-item')[0]
@@ -55,11 +55,11 @@
         el.style.transform = 'translate3d(0,-300px,0)'
         ball.style.transform = 'translate3d(-300px,0,0)'
 
-        console.log('进入时候',el)
+        // console.log('进入时候',el)
       },
       afterEnter(el){
         this.show = !this.show
-        console.log('进入完成')
+        // console.log('进入完成')
       },
       btn(){
         this.show = !this.show

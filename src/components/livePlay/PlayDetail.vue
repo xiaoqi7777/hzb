@@ -36,9 +36,9 @@ export default {
     },
     btnShow(e) {
       let dom = e.target;
-      console.log("eeeeeeee11111111111111");
+      // console.log("eeeeeeee11111111111111");
       if (!dom.matches(".isShow")) {
-        console.log("++++++++++++++++++	");
+        // console.log("++++++++++++++++++	");
         Brother.$emit("isShow", false);
       }
     }
