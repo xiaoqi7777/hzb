@@ -152,8 +152,8 @@ export default {
     }
   },
   created() {
-    this.isSubscribe()    
-    this.getSDK()
+    // this.isSubscribe()    
+    // this.getSDK()
   }
 };
 </script>

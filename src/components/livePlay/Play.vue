@@ -33,6 +33,7 @@ export default {
   },
   created(){
     this.item = this.$route.query.item
+    console.log('播放的数据',this.item)
     this.userId = this.item.userId
     this.postData.activityId = this.item.activityId
     // console.log('id',this.postData.activityId)
@@ -47,7 +48,11 @@ export default {
       this.axio.post('he_live/getActivityPlayUrl',data).then(data=>{
         // console.log('postdata',data.data)
         let res = data.data.data
-        this.playUrl = res.playUrl || res.playbackList[0].playbackUrl
+        if(this.item.status == 4|| this.item.status == 9 ){
+          this.playUrl = res.playbackList[0].playbackUrl
+        }else{
+          this.playUrl = res.playUrl 
+        }
         // console.log('.......',this.playUrl)
           this.$emit('childrenVlue',true)
           let player = new Player({

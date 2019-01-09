@@ -3,7 +3,8 @@
       <!-- #AEEEEE -->
         <section :class="$style.title_img">
           <div :class="$style.activePreview" v-if="status == 2">活动预告</div>
-          <div :class="$style.active" v-if="status == 9">活动</div>
+          <div :class="$style.active" v-if="status == 9||status == 4">回看</div>
+          <div :class="$style.activePink" v-if="status == 3">直播中</div>
 				  <img :class='$style.img' :src="item.coverUrl" alt="">
         </section>
 		   	<BoxLine :item='item'>
@@ -20,7 +21,7 @@
 		</article>
 </template>
 
-<script>  
+<script>
 import BoxLine from './BoxLine.vue'
 export default {
   props:['item'],
@@ -39,7 +40,7 @@ export default {
   methods:{
     btn(){
       this.$router.push({
-        path:'/index',
+        path:'/PlayDetail',
       	query:{
 		      item:this.item
 		    }
@@ -76,6 +77,20 @@ export default {
     margin-top: 0.5rem;
     margin-left: calc(100% - 6rem);
     background-color: #AEEEEE;
+    border-radius: 1rem;
+    width: 5rem;
+    height: 2rem;
+    
+    line-height: 30px;
+    text-align: center;
+    font-size: 12px
+  }
+  .activePink{
+    display: inline-block;
+    position: absolute;
+    margin-top: 0.5rem;
+    margin-left: calc(100% - 6rem);
+    background-color: pink;
     border-radius: 1rem;
     width: 5rem;
     height: 2rem;
